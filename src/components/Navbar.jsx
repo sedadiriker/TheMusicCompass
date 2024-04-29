@@ -69,7 +69,8 @@ function Navbar(props) {
           ml: { sm: `${drawerWidth}px`},
           backgroundColor:'background',
           paddingTop:'10px',
-          borderBottom:"3px solid yellow"
+          borderBottom:"3px solid yellow",
+          zIndex:10
         }}
       >
         <Toolbar>
@@ -109,8 +110,7 @@ function Navbar(props) {
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-           
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth,backgroundColor:"background_2",color:"white" },
           }}
         >
           {drawer}
@@ -119,7 +119,7 @@ function Navbar(props) {
           variant="permanent"
           sx={{
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth ,mt:'15vh',}
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth ,pt:'15vh',backgroundColor:"background_2",color:"white",zIndex:"1"}
           }}
           open
         >
@@ -129,7 +129,7 @@ function Navbar(props) {
 
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)`,backgroundColor:'black' } }}
       >
         <Toolbar />
         <Home/>

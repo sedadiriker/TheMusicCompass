@@ -18,6 +18,7 @@ const ThemeContextProvider = ({children}) => {
     palette: {
       background:'rgb(70, 68, 68)',
       logoColor: "rgb(237, 204, 15)",
+      background_2:'rgb(37, 36, 36)'
   },
   
   
