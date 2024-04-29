@@ -1,9 +1,12 @@
-import Home from "./Home";
+import ThemeContextProvider from "./context/ThemeContextProvider";
+import AppRouter from "./router/AppRouter";
 
 function App() {
   return (
     <div className="App">
-      <Home/>
+        <ThemeContextProvider>
+          <AppRouter />
+        </ThemeContextProvider>
     </div>
   );
 }
