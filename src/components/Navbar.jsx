@@ -14,6 +14,7 @@ import SearchIcon from '@mui/icons-material/Search';import MenuIcon from '@mui/i
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
+import Search from './Search';
 
 const drawerWidth = 240;
 
@@ -21,7 +22,7 @@ function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
-  // const [page,setPage] = React.useState('/Home')
+  const [searchOpen, setSearchOpen] = React.useState(false);
   const navigate = useNavigate()
 
   const handleDrawerClose = () => {
@@ -38,24 +39,30 @@ function Navbar(props) {
       setMobileOpen(!mobileOpen);
     }
   };
-
-  const drawer = (
-    <div>
-      <Toolbar />
-      <List>
-        {['home', 'search'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton onClick={() => navigate(`/${text}`)}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <HomeIcon /> : <SearchIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text}/>
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+  const handleSearchOpen = () => {
+    setSearchOpen(true);
+  };
+  const handleSearchClose = () => {
+    setSearchOpen(false);
+  };
+  
+  // const drawer = (
+  //   <div>
+  //     <Toolbar />
+  //     <List>
+  //       {['Home', 'Search'].map((text, index) => (
+  //         <ListItem key={text} disablePadding>
+  //           <ListItemButton onClick={() => {text==='Home' && navigate(`/${text}`)}}>
+  //             <ListItemIcon sx={{color:"logoColor"}}>
+  //               {index % 2 === 0 ? <HomeIcon/> : <SearchIcon />}
+  //             </ListItemIcon>
+  //             <ListItemText primary={text}/>
+  //           </ListItemButton>
+  //         </ListItem>
+  //       ))}
+  //     </List>
+  //   </div>
+  // );
 
   // Remove this const when copying and pasting into your project.
   const container = window !== undefined ? () => window().document.body : undefined;
@@ -67,12 +74,11 @@ function Navbar(props) {
         position="absolute"
         sx={{
           width: '100vw',
-          height:'15vh',
-          ml: { sm: `${drawerWidth}px`},
-          backgroundColor:'background',
-          paddingTop:'10px',
-          borderBottom:"3px solid yellow",
-          zIndex:10
+          height: '15vh',
+          ml: { sm: `${drawerWidth}px` },
+          backgroundColor: 'background_2',
+          paddingTop: '10px',
+          zIndex: 10
         }}
       >
         <Toolbar>
@@ -86,13 +92,12 @@ function Navbar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{ fontFamily: "logo", fontSize: "1.5rem", textTransform: "uppercase", display: "flex", alignItems: "center", gap: "1rem", marginLeft: "2rem", color: "logoColor", fontWeight: "bold" }}>
-  <p><img src="/images/logo.png" width="50" alt="logo" /></p>
-  <p>
-    <span style={{ fontSize: "2.5rem" }}>M</span>usic 
-    <span style={{ fontSize: "2.5rem" }}>C</span>ompass
-  </p>
-</Typography>
-
+            <p><img src="/images/logo.png" width="50" alt="logo" /></p>
+            <p>
+              <span style={{ fontSize: "2.5rem" }}>M</span>usic
+              <span style={{ fontSize: "2.5rem" }}>C</span>ompass
+            </p>
+          </Typography>
         </Toolbar>
       </AppBar>
       <Box
@@ -100,7 +105,6 @@ function Navbar(props) {
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
           variant="temporary"
@@ -112,30 +116,79 @@ function Navbar(props) {
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth,backgroundColor:"background_2",color:"white" },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, backgroundColor: "background_2", color: "white" },
           }}
         >
-          {drawer}
+          <div>
+            <Toolbar />
+            <List>
+              {/* Home Button */}
+              <ListItem disablePadding>
+                <ListItemButton onClick={() => navigate('/Home')}>
+                  <ListItemIcon sx={{ color: "logoColor" }}>
+                    <HomeIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Home" />
+                </ListItemButton>
+              </ListItem>
+
+              {/* Search Button */}
+              <ListItem disablePadding>
+                <ListItemButton onClick={handleSearchOpen}>
+                  <ListItemIcon sx={{ color: "logoColor" }}>
+                    <SearchIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Search" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </div>
         </Drawer>
         <Drawer
           variant="permanent"
           sx={{
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth ,pt:'15vh',backgroundColor:"background_2",color:"white",zIndex:"1"}
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, pt: '15vh', backgroundColor: "background_2", color: "white", zIndex: "1" }
           }}
           open
         >
-          {drawer}
+          <div>
+            <Toolbar />
+            <List>
+              {/* Home Button */}
+              <ListItem disablePadding>
+                <ListItemButton onClick={() => navigate('/Home')}>
+                  <ListItemIcon sx={{ color: "logoColor" }}>
+                    <HomeIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Home" />
+                </ListItemButton>
+              </ListItem>
+
+              {/* Search Button */}
+              <ListItem disablePadding>
+                <ListItemButton onClick={handleSearchOpen}>
+                  <ListItemIcon sx={{ color: "logoColor" }}>
+                    <SearchIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Search" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </div>
         </Drawer>
       </Box>
 
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)`,backgroundColor:'black' } }}
+        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)`, backgroundColor: 'black' } }}
       >
         <Toolbar />
         {/* <Home/> */}
       </Box>
+
+      {/* Search component */}
+      <Search open={searchOpen} handleClose={handleSearchClose} />
     </Box>
   );
 }
