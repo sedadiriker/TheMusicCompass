@@ -5,13 +5,18 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { data, filterImageUrls } from '../helper/data';
 import Avatar from '@mui/material/Avatar';
+import { useNavigate } from 'react-router-dom';
 
 const TopArtistCard = ({ name }) => {
-    console.log(name)
+    // console.log(name)
     const imageUrls = filterImageUrls(data);
+    const navigate = useNavigate()
 
+    const handleClick=()=> {
+        navigate(`${name}`)
+    }
     return (
-        <Card sx={{ width:"200px",textAlign:"center"}}>
+        <Card onClick={handleClick} sx={{ width:"200px",textAlign:"center"}}>
             <CardActionArea>
                 <Avatar
                     src={imageUrls[name]}

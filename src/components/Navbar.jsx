@@ -13,7 +13,7 @@ import ListItemText from '@mui/material/ListItemText';
 import SearchIcon from '@mui/icons-material/Search';import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Home from '../pages/Home';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -21,6 +21,8 @@ function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  // const [page,setPage] = React.useState('/Home')
+  const navigate = useNavigate()
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -41,13 +43,13 @@ function Navbar(props) {
     <div>
       <Toolbar />
       <List>
-        {['Home', 'Search'].map((text, index) => (
+        {['home', 'search'].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => navigate(`/${text}`)}>
               <ListItemIcon>
                 {index % 2 === 0 ? <HomeIcon /> : <SearchIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={text}/>
             </ListItemButton>
           </ListItem>
         ))}
@@ -132,7 +134,7 @@ function Navbar(props) {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)`,backgroundColor:'black' } }}
       >
         <Toolbar />
-        <Home/>
+        {/* <Home/> */}
       </Box>
     </Box>
   );

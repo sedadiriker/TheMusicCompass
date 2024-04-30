@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Typography } from '@mui/material';
+import { Container, Stack, Typography } from '@mui/material';
 import TopArtistCard from '../components/TopArtistCard';
 
 const Home = () => {
@@ -29,8 +29,8 @@ const Home = () => {
   }, []);
 
   return (
-    <Container sx={{ marginTop: "10vh", backgroundColor:'black', width:"100%" }}>
-      <Typography variant="h4" color="white">Top Artists</Typography>
+    <Container sx={{backgroundColor:'black', width:"100vw", marginRight:"-.2px"}}>
+      <Typography variant="h4" color="white" pt={2}>Top Artists</Typography>
       <Container sx={{display:"flex", flexWrap:"wrap", justifyContent:"center", rowGap:"1rem", columnGap:"10px"}}>{
         topArtists?.map(artist => (
           <TopArtistCard key={artist.name} {...artist}/>
