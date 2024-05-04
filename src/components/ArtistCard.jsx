@@ -13,18 +13,26 @@ const TopArtistCard = ({ name }) => {
     const navigate = useNavigate()
 
     const handleClick=()=> {
-        navigate(`${name}`)
+        navigate(`/${name}`)
     }
     return (
         <Card onClick={handleClick} sx={{ width:"200px",textAlign:"center"}}>
             <CardActionArea>
-                <Avatar
-                    src={imageUrls[name]}
-                    alt={name}
-                    sx={{ width: '80%', height: 160,margin:"auto" }}
-                />
+            {imageUrls[name] ? (
+                    <Avatar
+                        src={imageUrls[name]}
+                        alt={name}
+                        sx={{ width: '80%', height: 160, margin: "auto", ":hover":{transform:'scale(1.1)', ":hover":{boxShadow:'1px 2px 30px brown'}},transition:'.5s ease-in-out' }}
+                    />
+                ) : (
+                    <Avatar
+                        src="images/profil.jpg"
+                        alt={name}
+                        sx={{ width: '80%', height: 160, margin: "auto",":hover":{transform:'scale(1.1)', ":hover":{boxShadow:'1px 2px 30px brown'}}  }}
+                    />
+                )}
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" color="white">
+                    <Typography gutterBottom variant="h6" component="div" color="white">
                         {name}
                     </Typography>
                 </CardContent>

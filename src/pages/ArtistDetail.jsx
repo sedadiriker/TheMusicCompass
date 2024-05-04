@@ -1,7 +1,7 @@
-import { Avatar, Box, Container, Typography } from "@mui/material";
+import { Avatar, Box, Button, Container, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { data, filterImageUrls } from "../helper/data";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
@@ -10,7 +10,7 @@ const ArtistDetail = () => {
   const [showmore, setShowmore] = useState(false);
   const { name } = useParams();
   const imageUrls = filterImageUrls(data);
-
+  const navigate = useNavigate()
   const api_key = process.env.REACT_APP_API_KEY;
   const URL = `http://ws.audioscrobbler.com/2.0/?method=artist.getTopTracks&artist=${name}&api_key=${api_key}&format=json`;
 
@@ -34,6 +34,7 @@ const ArtistDetail = () => {
         marginRight: "-.2px",
         minHeight: "100vh",
         pt: "3rem",
+        position:'relative',
       }}
     >
       <Box
@@ -66,7 +67,7 @@ const ArtistDetail = () => {
 
       <Box px="2rem" py="1rem">
         <Typography py="1rem" color="logoColor" variant="h4" fontWeight="bold">
-          popular songs
+          Popular Songs
         </Typography>
         {!showmore ? (
           <>
@@ -92,7 +93,7 @@ const ArtistDetail = () => {
               </Box>
             ))}
             <Typography
-              fontSize="1.5rem"
+              fontSize="1.2rem"
               color="#1BD760"
               sx={{ ":hover": { opacity: "0.6" } }}
               onClick={() => setShowmore(true)}
@@ -124,7 +125,7 @@ const ArtistDetail = () => {
               </Box>
             ))}
             <Typography
-              fontSize="1.5rem"
+              fontSize="1.2rem"
               color="brown"
               sx={{ ":hover": { opacity: "0.6" } }}
               onClick={() => setShowmore(false)}
@@ -134,6 +135,8 @@ const ArtistDetail = () => {
           </>
         )}
       </Box>
+
+      <Button onClick={()=> navigate(-1)} sx={{position:"absolute", bottom:"10px", right:"10px"}}>Back</Button>
     </Container>
   );
 };

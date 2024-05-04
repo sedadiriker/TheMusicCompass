@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Typography } from '@mui/material';
-import TopArtistCard from '../components/TopArtistCard';
+import TopArtistCard from '../components/ArtistCard';
 
 const Home = () => {
   const [topArtists, setTopArtists] = useState([]);
@@ -12,7 +12,6 @@ const Home = () => {
     api_key: process.env.REACT_APP_API_KEY,
     format: 'json'
   }
-
   }
   useEffect(() => {
     const getTopArtists = async () => {
@@ -30,8 +29,8 @@ const Home = () => {
 
   return (
     <Container sx={{backgroundColor:'black', width:"100vw", marginRight:"-.2px", minHeight:"100vh"}}>
-      <Typography variant="h4" color="white" pt='2rem' mb={5} textAlign={'center'}>Top Artists</Typography>
-      <Container sx={{display:"flex", flexWrap:"wrap", justifyContent:"center", rowGap:"1rem", columnGap:"10px"}}>{
+      <Typography fontFamily={'logo'} fontWeight={'bold'}  variant="h3"color="white" pt='2rem' mb={5} textAlign={'center'}>Top Artists</Typography>
+      <Container sx={{display:"flex", flexWrap:"wrap", justifyContent:"center", rowGap:"1.5rem", columnGap:"1rem"}}>{
         topArtists?.map(artist => (
           <TopArtistCard key={artist.name} {...artist}/>
         ))
