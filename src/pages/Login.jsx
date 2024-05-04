@@ -12,7 +12,7 @@ import { object, string } from "yup";
 import useApiRequest from "../services/useApiRequest";
 
 const Login = () => {
-  const { signIn } = useApiRequest();
+  const { signIn,forgotPassword } = useApiRequest();
 
   const loginSchema = object({
     email: string()
@@ -123,15 +123,15 @@ const Login = () => {
                     helperText={touched.email && errors.email}
                     InputProps={{
                       sx: {
-                        color:"white",
+                        color: "white",
                         "& .MuiOutlinedInput-notchedOutline": {
                           borderColor: "white",
                         },
                         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "warning", 
+                          borderColor: "warning",
                         },
                         "&:hover .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "logoColor", 
+                          borderColor: "logoColor",
                         },
                       },
                     }}
@@ -141,6 +141,7 @@ const Login = () => {
                       },
                     }}
                   />
+                  
                   <TextField
                     label="Password"
                     name="password"
@@ -154,7 +155,7 @@ const Login = () => {
                     helperText={touched.password && errors.password}
                     InputProps={{
                       sx: {
-                        color:"white",
+                        color: "white",
                         "& .MuiOutlinedInput-notchedOutline": {
                           borderColor: "white",
                         },
@@ -172,6 +173,11 @@ const Login = () => {
                       },
                     }}
                   />
+                  <Box style={{ textAlign: "right" }}>
+                    <Link onClick={()=>forgotPassword(values.email)} style={{ color: "red", display: "inline" }}>
+                      Forgot password
+                    </Link>
+                  </Box>
                   <Button
                     variant="contained"
                     type="submit"
