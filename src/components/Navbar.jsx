@@ -1,20 +1,25 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import HomeIcon from '@mui/icons-material/Home';import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import SearchIcon from '@mui/icons-material/Search';import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import { useNavigate } from 'react-router-dom';
-import Search from './Search';
+import * as React from "react";
+import PropTypes from "prop-types";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import HomeIcon from "@mui/icons-material/Home";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
+import Search from "./Search";
+import { Button } from "@mui/material";
+import { useSelector } from "react-redux";
+import useApiRequest from "../services/useApiRequest";
 
 const drawerWidth = 240;
 
@@ -23,8 +28,11 @@ function Navbar(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const [searchOpen, setSearchOpen] = React.useState(false);
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+  const { logout } = useApiRequest()
+console.log(user)
+  // console.log(user.displayName);
   const handleDrawerClose = () => {
     setIsClosing(true);
     setMobileOpen(false);
@@ -45,7 +53,7 @@ function Navbar(props) {
   const handleSearchClose = () => {
     setSearchOpen(false);
   };
-  
+
   // const drawer = (
   //   <div>
   //     <Toolbar />
@@ -65,39 +73,93 @@ function Navbar(props) {
   // );
 
   // Remove this const when copying and pasting into your project.
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
         position="absolute"
         sx={{
-          width: '100vw',
-          height: '15vh',
+          width: "100vw",
+          height: "15vh",
           ml: { sm: `${drawerWidth}px` },
-          backgroundColor: 'background_2',
-          paddingTop: '10px',
-          zIndex: 10
+          backgroundColor: "background_2",
+          paddingTop: "10px",
+          zIndex: 10,
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{...(user && { display: "flex", justifyContent: "space-between", }) }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{ fontFamily: "logo", fontSize: "1.5rem", textTransform: "uppercase", display: "flex", alignItems: "center", gap: "1rem", marginLeft: "2rem", color: "logoColor", fontWeight: "bold" }}>
-            <p><img src="/images/logo.png" width="50" alt="logo" /></p>
-            <p>
-              <span style={{ fontSize: "2.5rem" }}>M</span>usic
-              <span style={{ fontSize: "2.5rem" }}>C</span>ompass
-            </p>
-          </Typography>
+          <Box
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{
+              fontFamily: "logo",
+              fontSize: { xs: "1rem", md: "1.5rem" },
+              textTransform: "uppercase",
+              display: "flex",
+              alignItems: "center",
+              gap: "1rem",
+              color: "logoColor",
+              fontWeight: "bold",
+            }}
+          >
+            <Box>
+              <img src="/images/logo.png" width={50} alt="logo" />
+            </Box>
+            <Box display={"flex"}>
+              <Typography
+                sx={{
+                  fontFamily: "logo",
+                  fontSize: { xs: "1.6rem", md: "2.2rem", color: "#A0E4F5" },
+                }}
+              >
+                M
+              </Typography>
+              usic
+              <Typography
+                sx={{
+                  fontFamily: "logo",
+                  fontSize: { xs: "1.6rem", md: "2.2rem", color: "#A0E4F5" },
+                }}
+              >
+                C
+              </Typography>
+              ompass
+            </Box>
+          </Box>
+          {user && (
+            <Box
+              display={"flex"}
+              flexDirection={"column"}
+              alignItems={"center"}
+            >
+              <Typography sx={{ fontSize: { xs: "10px", md: "14px" } }}>Welcome</Typography>
+              <Typography sx={{ fontSize: { xs: "12px", md: "16px" } }} textTransform={"uppercase"} color={"logoColor"}>{user.displayName} </Typography>
+              <Button
+                onClick={() => logout()}
+                sx={{
+                  ":hover": { color: "red" },
+                  fontSize: "12px",
+                  mt: "5px",
+                }}
+                color="inherit"
+              >
+                Logout
+              </Button>
+            </Box>
+          )}
         </Toolbar>
       </AppBar>
       <Box
@@ -115,8 +177,13 @@ function Navbar(props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, backgroundColor: "background_2", color: "white" },
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+              backgroundColor: "background_2",
+              color: "white",
+            },
           }}
         >
           <div>
@@ -124,7 +191,7 @@ function Navbar(props) {
             <List>
               {/* Home Button */}
               <ListItem disablePadding>
-                <ListItemButton onClick={() => navigate('/Home')}>
+                <ListItemButton onClick={() => navigate("/Home")}>
                   <ListItemIcon sx={{ color: "logoColor" }}>
                     <HomeIcon />
                   </ListItemIcon>
@@ -147,8 +214,15 @@ function Navbar(props) {
         <Drawer
           variant="permanent"
           sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, pt: '15vh', backgroundColor: "background_2", color: "white", zIndex: "1" }
+            display: { xs: "none", sm: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+              pt: "15vh",
+              backgroundColor: "background_2",
+              color: "white",
+              zIndex: "1",
+            },
           }}
           open
         >
@@ -157,7 +231,7 @@ function Navbar(props) {
             <List>
               {/* Home Button */}
               <ListItem disablePadding>
-                <ListItemButton onClick={() => navigate('/Home')}>
+                <ListItemButton onClick={() => navigate("/Home")}>
                   <ListItemIcon sx={{ color: "logoColor" }}>
                     <HomeIcon />
                   </ListItemIcon>
@@ -179,15 +253,13 @@ function Navbar(props) {
         </Drawer>
       </Box>
 
-      <Box
+      {/* <Box
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)`, backgroundColor: 'black' } }}
       >
         <Toolbar />
-        {/* <Home/> */}
-      </Box>
+      </Box> */}
 
-      {/* Search component */}
       <Search open={searchOpen} handleClose={handleSearchClose} />
     </Box>
   );

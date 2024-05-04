@@ -22,7 +22,7 @@ const TopArtistCard = ({ name }) => {
                     <Avatar
                         src={imageUrls[name]}
                         alt={name}
-                        sx={{ width: '80%', height: 160, margin: "auto", ":hover":{transform:'scale(1.1)', ":hover":{boxShadow:'1px 2px 30px brown'}},transition:'.5s ease-in-out' }}
+                        sx={{ width: '80%', height: 160, margin: "auto",opacity:0.8, ":hover":{transform:'scale(1.1)', ":hover":{opacity:"1"}},transition:'.5s ease' }}
                     />
                 ) : (
                     <Avatar

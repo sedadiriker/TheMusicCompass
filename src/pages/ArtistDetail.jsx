@@ -24,7 +24,10 @@ const ArtistDetail = () => {
   };
   useEffect(() => {
     getSongs();
+    
   }, [name]);
+
+  
   console.log(songs);
   return (
     <Container
@@ -33,7 +36,7 @@ const ArtistDetail = () => {
         width: "100vw",
         marginRight: "-.2px",
         minHeight: "100vh",
-        pt: "3rem",
+        pt: "9rem",
         position:'relative',
       }}
     >
@@ -65,7 +68,7 @@ const ArtistDetail = () => {
         </Typography>
       </Box>
 
-      <Box px="2rem" py="1rem">
+      <Box id="popular-songs-box" px="2rem" py="1rem">
         <Typography py="1rem" color="logoColor" variant="h4" fontWeight="bold">
           Popular Songs
         </Typography>
