@@ -6,7 +6,7 @@ import TopArtistCard from '../components/ArtistCard';
 const Home = () => {
   const [topArtists, setTopArtists] = useState([]);
 
-  const URL = 'http://ws.audioscrobbler.com/2.0/'
+  const URL = 'https://ws.audioscrobbler.com/2.0/'
   const params = {params: {
     method: 'chart.getTopArtists',
     api_key: process.env.REACT_APP_API_KEY,

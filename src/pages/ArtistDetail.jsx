@@ -12,7 +12,7 @@ const ArtistDetail = () => {
   const imageUrls = filterImageUrls(data);
   const navigate = useNavigate()
   const api_key = process.env.REACT_APP_API_KEY;
-  const URL = `http://ws.audioscrobbler.com/2.0/?method=artist.getTopTracks&artist=${name}&api_key=${api_key}&format=json`;
+  const URL = `https://ws.audioscrobbler.com/2.0/?method=artist.getTopTracks&artist=${name}&api_key=${api_key}&format=json`;
 
   const getSongs = async () => {
     try {
