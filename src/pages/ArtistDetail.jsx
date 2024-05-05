@@ -4,10 +4,13 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { data, filterImageUrls } from "../helper/data";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import Loading from "../components/Loading";
 
 const ArtistDetail = () => {
   const [songs, setSongs] = useState([]);
   const [showmore, setShowmore] = useState(false);
+  const [loading,setLoading] = useState(true)
+
   const { name } = useParams();
   const imageUrls = filterImageUrls(data);
   const navigate = useNavigate()
@@ -27,10 +30,16 @@ const ArtistDetail = () => {
     
   }, [name]);
 
-  
+  useEffect(()=> {
+    let timer = setTimeout(()=> {
+      setLoading(false)
+    },1000)
+    return () => clearTimeout(timer)
+  },[])
   console.log(songs);
   return (
-    <Container
+    <>
+    {loading ? <Loading/> : (<Container
       sx={{
         backgroundColor: "black",
         width: "100vw",
@@ -147,7 +156,8 @@ const ArtistDetail = () => {
       </Box>
 
       <Button onClick={()=> navigate(-1)} sx={{position:"absolute", bottom:"10px", right:"10px"}}>Back</Button>
-    </Container>
+    </Container>)}
+    </>
   );
 };
 

@@ -4,9 +4,12 @@ import React, { useEffect, useState } from 'react'
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { data, filterImageUrls } from '../helper/data';
 import { Link } from 'react-router-dom';
+import Loading from '../components/Loading';
 
 const TopAlbüms = () => {
     const [topAlbums, setTopAlbums] = useState([]);
+    const [loading,setLoading] = useState(true)
+
     const artists = ['Taylor Swift', 'Katy Perry', 'Rihanna', 'Eminem', 'SZA']
     const imageUrls = filterImageUrls(data);
 
@@ -37,8 +40,15 @@ const TopAlbüms = () => {
     getTopAlbums();
   }, []);
   console.log(topAlbums)
+  useEffect(()=> {
+    let timer = setTimeout(()=> {
+      setLoading(false)
+    },1000)
+    return () => clearTimeout(timer)
+  },[])
   return (
-    <Container sx={{backgroundColor:'black', width:"100vw", marginRight:"-.2px", minHeight:"100vh",py:10, pt:15,backgroundImage:`url("/images/loginback.jpg")`, backgroundPosition:"center",backgroundRepeat:"repeat", backgroundSize:"contain"}}>
+   <>
+   {loading ? <Loading/> : ( <Container sx={{backgroundColor:'black', width:"100vw", marginRight:"-.2px", minHeight:"100vh",py:10, pt:15,backgroundImage:`url("/images/loginback.jpg")`, backgroundPosition:"center",backgroundRepeat:"repeat", backgroundSize:"contain"}}>
          <Typography  fontWeight={'bold'}  variant="h4"color="white" py='2rem' mb={5} textAlign={'center'} sx={{background: "linear-gradient(180deg, #393940 30%, #202024 100%)",}} mt={2}>Top Albums</Typography>
          {topAlbums.map((album, index) => (
     <Box
@@ -74,7 +84,8 @@ const TopAlbüms = () => {
     </Box>
 ))}
 
-    </Container>
+    </Container>)}
+   </>
 
   )
 }
