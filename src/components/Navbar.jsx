@@ -202,7 +202,7 @@ function Navbar(props) {
             <Toolbar />
             <List>
               <ListItem disablePadding>
-                <ListItemButton onClick={() => navigate("/Home")}>
+                <ListItemButton onClick={() => {navigate("/Home");handleDrawerClose()}}>
                   <ListItemIcon sx={{ color: "logoColor" }}>
                     <HomeIcon />
                   </ListItemIcon>
@@ -210,7 +210,7 @@ function Navbar(props) {
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton onClick={()=>navigate("/topalbums")}>
+                <ListItemButton onClick={()=>{navigate("/topalbums");handleDrawerClose()}}>
                   <ListItemIcon sx={{ color: "logoColor" }}>
                     <LibraryMusicIcon />
                   </ListItemIcon>
@@ -218,12 +218,15 @@ function Navbar(props) {
                       "&:hover": {
                         color:"#A0E4F5"
                       },
-                    }} primary="Search" />
+                    }} primary="Top Albums" />
                 </ListItemButton>
               </ListItem>
 
               <ListItem disablePadding>
-                <ListItemButton onClick={handleSearchOpen}>
+                <ListItemButton onClick={()=> {
+                  handleSearchOpen();
+                  handleDrawerClose()
+                }}>
                   <ListItemIcon sx={{ color: "logoColor" }}>
                     <SearchIcon />
                   </ListItemIcon>
