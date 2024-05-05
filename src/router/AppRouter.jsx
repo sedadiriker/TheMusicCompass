@@ -10,6 +10,7 @@ import Search from "../components/Search";
 import SearchResults from "../pages/SearchResults";
 import Register from "../pages/Register";
 import PrivateRouter from "./PrivateRouter";
+import TopAlbüms from "../pages/TopAlbüms";
 
 const AppRouter = () => {
   return (
@@ -23,6 +24,7 @@ const AppRouter = () => {
           <Route path="about" element={<About />} />
           <Route path=":name" element={<ArtistDetail />} />
           <Route path="search" element={<Search />} />
+          <Route path="topalbums" element={<TopAlbüms />} />
           <Route path="searchresults" element={<SearchResults />} />
         </Route>
 

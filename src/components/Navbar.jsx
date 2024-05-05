@@ -20,7 +20,7 @@ import Search from "./Search";
 import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
 import useApiRequest from "../services/useApiRequest";
-
+import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 const drawerWidth = 240;
 
 function Navbar(props) {
@@ -30,8 +30,8 @@ function Navbar(props) {
   const [searchOpen, setSearchOpen] = React.useState(false);
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
-  const { logout } = useApiRequest()
-console.log(user)
+  const { logout } = useApiRequest();
+  console.log(user);
   // console.log(user.displayName);
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -90,7 +90,11 @@ console.log(user)
           zIndex: 10,
         }}
       >
-        <Toolbar sx={{...(user && { display: "flex", justifyContent: "space-between", }) }}>
+        <Toolbar
+          sx={{
+            ...(user && { display: "flex", justifyContent: "space-between" }),
+          }}
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -145,8 +149,16 @@ console.log(user)
               flexDirection={"column"}
               alignItems={"center"}
             >
-              <Typography sx={{ fontSize: { xs: "10px", md: "14px" } }}>Welcome</Typography>
-              <Typography sx={{ fontSize: { xs: "12px", md: "16px" } }} textTransform={"uppercase"} color={"logoColor"}>{user.displayName} </Typography>
+              <Typography sx={{ fontSize: { xs: "10px", md: "14px" } }}>
+                Welcome
+              </Typography>
+              <Typography
+                sx={{ fontSize: { xs: "12px", md: "16px" } }}
+                textTransform={"uppercase"}
+                color={"logoColor"}
+              >
+                {user.displayName}{" "}
+              </Typography>
               <Button
                 onClick={() => logout()}
                 sx={{
@@ -189,7 +201,6 @@ console.log(user)
           <div>
             <Toolbar />
             <List>
-              {/* Home Button */}
               <ListItem disablePadding>
                 <ListItemButton onClick={() => navigate("/Home")}>
                   <ListItemIcon sx={{ color: "logoColor" }}>
@@ -198,8 +209,19 @@ console.log(user)
                   <ListItemText primary="Home" />
                 </ListItemButton>
               </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton onClick={()=>navigate("/topalbums")}>
+                  <ListItemIcon sx={{ color: "logoColor" }}>
+                    <LibraryMusicIcon />
+                  </ListItemIcon>
+                  <ListItemText  sx={{
+                      "&:hover": {
+                        color:"#A0E4F5"
+                      },
+                    }} primary="Search" />
+                </ListItemButton>
+              </ListItem>
 
-              {/* Search Button */}
               <ListItem disablePadding>
                 <ListItemButton onClick={handleSearchOpen}>
                   <ListItemIcon sx={{ color: "logoColor" }}>
@@ -229,23 +251,45 @@ console.log(user)
           <div>
             <Toolbar />
             <List>
-              {/* Home Button */}
               <ListItem disablePadding>
                 <ListItemButton onClick={() => navigate("/Home")}>
                   <ListItemIcon sx={{ color: "logoColor" }}>
                     <HomeIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Home" />
+                  <ListItemText  sx={{
+                      "&:hover": {
+                        color:"#A0E4F5"
+                      },
+                    }} primary="Home" />
                 </ListItemButton>
               </ListItem>
 
-              {/* Search Button */}
+              <ListItem disablePadding>
+                <ListItemButton onClick={()=> navigate("/topalbums")}>
+                  <ListItemIcon sx={{ color: "logoColor" }}>
+                    <LibraryMusicIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    sx={{
+                      "&:hover": {
+                        color:"#A0E4F5"
+                      },
+                    }}
+                    primary="Top Albums"
+                  />
+                </ListItemButton>
+              </ListItem>
+
               <ListItem disablePadding>
                 <ListItemButton onClick={handleSearchOpen}>
                   <ListItemIcon sx={{ color: "logoColor" }}>
                     <SearchIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Search" />
+                  <ListItemText  sx={{
+                      "&:hover": {
+                        color:"#A0E4F5"
+                      },
+                    }} primary="Search" />
                 </ListItemButton>
               </ListItem>
             </List>

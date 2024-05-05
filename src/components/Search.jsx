@@ -74,6 +74,7 @@ const handleSearch = async () => {
         value={searchTerm}
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         onChange={(e)=>setSearchTerm(e.target.value)}
+        placeholder='Search artist'
       />
           </DialogContentText>
         </DialogContent>

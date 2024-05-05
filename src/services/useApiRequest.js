@@ -33,7 +33,7 @@ const useApiRequest = () => {
       const { user } = userCredential;
 
       dispatch(loginSuccess(user));
-      navigate(`/Home`);
+      navigate(-1);
       toastSuccessNotify("Login successfully");
       // console.log(userCredential);
     } catch (error) {

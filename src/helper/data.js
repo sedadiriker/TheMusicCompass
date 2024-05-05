@@ -127,6 +127,70 @@ export const data= [
         name:"Mac DeMarco",
         imageUrl : "https://images.aposto.com/2023/3/1/1682344279710.jpeg"
     },
+    {
+        name:"Future",
+        imageUrl : "https://www.highsnobiety.com/static-assets/dato/1673436807-best-future-songs-01.jpg?alt=best+future+songs"
+    },
+    {
+        name:"Hozier",
+        imageUrl : "https://www.rollingstone.com/wp-content/uploads/2024/03/Hozier-Unheard-EP.jpg?crop=0px%2C0px%2C1798px%2C1014px&resize=1600%2C900"
+    },
+    {
+        name:"Steve Lacy",
+        imageUrl : "https://media.bantmag.com/wp-content/uploads/2022/06/steve-lacy-header-800x533.jpg"
+    },
+    {
+        name:"Katy Perry",
+        imageUrl : "https://i.scdn.co/image/ab6761610000e5ebdc9dcb7e4a97b4552e1224d6"
+    },
+    {
+        name:"21 Savage",
+        imageUrl : "https://yt3.googleusercontent.com/Mi-QlhKV2IltHknkpcrrtUsd0w89aFI48_KgDMlw9A9d9Jv92xdkMUUAScKdNHJfgVyKpnnwxQ=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+        name:"Bruno Mars",
+        imageUrl : "https://i.scdn.co/image/ab6761610000e5ebc36dd9eb55fb0db4911f25dd"
+    },
+    {
+        name:"Gorillaz",
+        imageUrl : "https://www.indyturk.com/sites/default/files/styles/1368x911/public/article/main_image/2020/12/06/527036-936952986.jpg?itok=KQh9xwoF"
+    },
+    {
+        name:"Coldplay",
+        imageUrl : "https://artist1.cdn107.com/f7d/f7df8504d3756b4052c381941d684a51_xl.jpg"
+    },
+    {
+        name:"Childish Gambino",
+        imageUrl : "https://i.scdn.co/image/ab67616d00001e0226d64b6150aa3d9b6b67d857"
+    },
+    {
+        name:"Harry Styles",
+        imageUrl : "https://www.indyturk.com/sites/default/files/styles/1368x911/public/article/main_image/2023/05/30/1149061-963493627.jpg?itok=7JSjl2Il"
+    },
+    {
+        name:"The Neighbourhood",
+        imageUrl : "https://i.scdn.co/image/ab67616d00001e029b6ac98a52f62d5cb473da40"
+    },
+    {
+        name:"Nirvana",
+        imageUrl : "https://cdn1.kralmuzik.com.tr/media/img/920x570/23-07/13/76ffbf42-c44c-11ed-9438-0210609a3fe2.jpg"
+    },
+    {
+        name:"A$AP Rocky",
+        imageUrl : "https://media.gq.com/photos/609d6e7585bdd1881580ee73/16:9/w_2560%2Cc_limit/asap-rocky-gq-cover-june-july-2021-01.jpg"
+    },
+    {
+        name:"Post Malone",
+        imageUrl : "https://media.npr.org/assets/img/2023/08/01/photo-credit----_custom-f88d70bce373dddb53cc79cbfa70b6c588aac581.jpg?s=1100&c=50&f=jpeg"
+    },
+    {
+        name:"Calvin Harris",
+        imageUrl : "https://www.hollywoodreporter.com/wp-content/uploads/2024/02/Calvin-Harris-getty-H-2024.jpg"
+    },
+    {
+        name:"Calvin Harris",
+        imageUrl : "https://www.hollywoodreporter.com/wp-content/uploads/2024/02/Calvin-Harris-getty-H-2024.jpg"
+    },
 ]
 
 export const filterImageUrls = (data) => {

@@ -26,10 +26,10 @@ const Home = () => {
 
     getTopArtists();
   }, []);
-
+// console.log(topArtists)
   return (
     <Container sx={{backgroundColor:'black', width:"100vw", marginRight:"-.2px", minHeight:"100vh",py:10, pt:15,backgroundImage:`url("/images/loginback.jpg")`, backgroundPosition:"center",backgroundRepeat:"repeat", backgroundSize:"contain"}}>
-      <Typography fontFamily={'logo'} fontWeight={'bold'}  variant="h2"color="#A0E4F5" pt='2rem' mb={5} textAlign={'center'}>Top Artists</Typography>
+      <Typography  fontWeight={'bold'}  variant="h4"color="white" py='2rem' mb={5} textAlign={'center'} sx={{background: "linear-gradient(180deg, #393940 30%, #202024 100%)",}} mt={2}>Top Artists</Typography>
       <Container sx={{display:"flex", flexWrap:"wrap", justifyContent:"center", rowGap:"1.5rem", columnGap:"1rem"}}>{
         topArtists?.map(artist => (
           <TopArtistCard key={artist.name} {...artist}/>

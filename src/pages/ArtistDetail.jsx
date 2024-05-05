@@ -1,7 +1,7 @@
 import { Avatar, Box, Button, Container, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { data, filterImageUrls } from "../helper/data";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
@@ -74,11 +74,14 @@ const ArtistDetail = () => {
         </Typography>
         {!showmore ? (
           <>
-            {songs.slice(0, 5).map(({ id, name, playcount }, index) => (
+            {songs.slice(0, 5).map(({ id, name, playcount,url }, index) => (
               <Box
+              component={Link}
+              to={url}
+              target="_blank"
                 display={"flex"}
                 justifyContent={"space-between"}
-                sx={{ cursor: "pointer", ":hover": { color: "yellow" } }}
+                sx={{ cursor: "pointer", ":hover": { color: "yellow" },textDecoration:"none" }}
                 fontSize="1.2rem"
                 key={id}
                 color="white"
@@ -90,7 +93,7 @@ const ArtistDetail = () => {
                   alignItems={"center"}
                   justifyContent={"space-between"}
                 >
-                  <PlayArrowIcon />
+                  <PlayArrowIcon style={{color:"#18813A"}} />
                   {playcount}
                 </Typography>
               </Box>
@@ -106,14 +109,18 @@ const ArtistDetail = () => {
           </>
         ) : (
           <>
-            {songs.map(({ id, name, playcount }, index) => (
+            {songs.map(({ id, name, playcount,url }, index) => (
               <Box
+              component={Link}
+              to={url}
+              target="_blank"
                 display={"flex"}
                 justifyContent={"space-between"}
-                sx={{ cursor: "pointer", ":hover": { color: "yellow" } }}
+                sx={{ cursor: "pointer", ":hover": { color: "yellow" }, textDecoration:"none" }}
                 fontSize="1.2rem"
                 key={id}
                 color="white"
+                
               >
                 <Typography>{`${index + 1} - ${name}`}</Typography>
                 <Typography
@@ -122,7 +129,7 @@ const ArtistDetail = () => {
                   alignItems={"center"}
                   justifyContent={"space-between"}
                 >
-                  <PlayArrowIcon />
+                  <PlayArrowIcon style={{color:"#18813A"}} />
                   {playcount}
                 </Typography>
               </Box>

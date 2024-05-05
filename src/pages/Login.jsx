@@ -60,13 +60,12 @@ const Login = () => {
         }}
       >
         <Grid
-          pt={35}
           px={1}
           item
           xs={12}
           sm={10}
           md={6}
-          sx={{ backdropFilter: "blur(8px)" }}
+          sx={{ backdropFilter: "blur(8px)",pt:{xs:20,md:35} }}
         >
           <Avatar
             sx={{
