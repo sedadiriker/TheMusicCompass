@@ -20,7 +20,7 @@ function Search({open,handleClose}) {
 
 const navigate = useNavigate()
 
- const URL = 'http://ws.audioscrobbler.com/2.0/'
+ const URL = 'https://ws.audioscrobbler.com/2.0/'
  const params = {
   params: {
     method: 'artist.search',
