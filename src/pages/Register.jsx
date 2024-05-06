@@ -14,7 +14,7 @@ import { object, string } from "yup";
 const Register = () => {
   const { register } = useApiRequest();
 
-  const loginSchema = object({
+  const registerSchema = object({
     email: string()
       .email("Please enter a valid email")
       .required("Email is required"),
@@ -105,7 +105,7 @@ const Register = () => {
               email: "",
               password: "",
             }}
-            validationSchema={loginSchema}
+            validationSchema={registerSchema}
             onSubmit={(values, actions) => {
               register(values.email, values.password, values.displayName);
               actions.resetForm();
